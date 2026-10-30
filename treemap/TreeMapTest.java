@@ -22,16 +22,22 @@ public class TreeMapTest {
 
     private void getByIndex(TreeMap<Integer, String> tm, Integer idx) {
         System.out.println("=========== Obter por índice ===========");
-        String value = (tm.get(idx));
-        String message = String.format("O índice %d corresponde ao valor %s.%n", idx, value);
+        String message = String.format("O índice %d não foi localizado!", idx);
+        if ((tm.containsKey(idx))) {
+            String value = (tm.get(idx));
+            message = String.format("O índice %d corresponde ao valor %s.%n", idx, value);
+        }
         System.out.println(message);
     }
 
     private void removeByIndex(TreeMap<Integer, String> tm, Integer idx) {
         System.out.println("=========== Remover por índice ===========");
-        String value = (tm.get(idx));
-        String message = String.format("O valor %s corresponde ao índice %d, foi removido.%n", value, idx);
-        tm.remove(idx);
+        String message = String.format("O índice %d não foi localizado!", idx);
+        if ((tm.containsKey(idx))) {
+            String value = (tm.get(idx));
+            message = String.format("O valor %s corresponde ao índice %d, foi removido.%n", value, idx);
+            tm.remove(idx);
+        }
         System.out.println(message);
     }
 
@@ -50,6 +56,7 @@ public class TreeMapTest {
         getByIndex(tm, 2);
         removeByIndex(tm, 4);
         printTreeMap(tm);
+        removeByIndex(tm, 4);
     }
 
 }

@@ -23,16 +23,22 @@ public class HashMapTest {
 
     private void getByIndex(HashMap<Integer, String> hm, Integer idx) {
         System.out.println("=========== Obter por índice ===========");
-        String value = (hm.get(idx));
-        String message = String.format("O índice %d corresponde ao valor %s.%n", idx, value);
+        String message = String.format("O índice %d não foi localizado!", idx);
+        if (hm.containsKey(idx)) {
+            String value = (hm.get(idx));
+            message = String.format("O índice %d corresponde ao valor %s.%n", idx, value);
+        }
         System.out.println(message);
     }
 
     private void removeByIndex(HashMap<Integer, String> hm, Integer idx) {
         System.out.println("=========== Remover por índice ===========");
-        String value = (hm.get(idx));
-        String message = String.format("O valor %s corresponde ao índice %d, foi removido.%n", value, idx);
-        hm.remove(idx);
+        String message = String.format("O índice %d não foi localizado!", idx);
+        if (hm.containsKey(idx)) {
+            String value = (hm.get(idx));
+            message = String.format("O valor %s corresponde ao índice %d, foi removido.%n", value, idx);
+            hm.remove(idx);
+        }
         System.out.println(message);
     }
 
@@ -51,6 +57,7 @@ public class HashMapTest {
         getByIndex(hm, 2);
         removeByIndex(hm, 3);
         printHashMap(hm);
+        getByIndex(hm, 3);
     }
 
 }
